@@ -2,10 +2,18 @@ var numbers = [0,0];
 var currentOperand = '';
 var workString = '';    //String that temp. stores the typed in numbers. Used for base10 writing of numbers.
 var isFinal = false;
+var isDecimal = false;
 
 function addNum(num){
     if (isFinal){clearAll()}
-    workString += num;
+    if (num == '.'){
+        if (isDecimal == false){
+            workString += num;
+        }
+        isDecimal = true;
+    } else {
+        workString += num;
+    }
     //Regex for one optional leading zero, that must be followed by a decimal point
     //let regex = /^(?!0\d)\d+(?:\.\d*)?$/;
     //This caused many issues all around, so i've decided to not include it
@@ -16,11 +24,15 @@ function clearAll(){
     numbers = [0,0];
     currentOperand = '';
     isFinal = false;
+    isDecimal = false;
     updateDisplay();
 }
 function clearLast(){
     if (workString[workString.length-1] == currentOperand){
         currentOperand = '';
+    }
+    if (workString[workString.length-1] == '.'){
+        isDecimal = false;
     }
     workString = workString.substring(0, workString.length-1);
     updateDisplay();
@@ -35,6 +47,7 @@ function addOperand(op){
           //If inputed operand is -, for negative numbers 
         } else {
             currentOperand = op;
+            isDecimal = false;
         }
         workString += op;
     }
@@ -43,6 +56,7 @@ function addOperand(op){
 function equals(){
     //[+\-\*\/\^], Matches for all used operads
     let split = workString.split(/[+\-\*\/\^]/);
+    console.log(split);
         //This removes the first split string, if it happens to be empty
         //It can only be empty if the first char is '-'
         //Then i add the "-" back
@@ -56,7 +70,8 @@ function equals(){
         case '-': result = numbers[0] - numbers[1]; break;
         case '*': result = numbers[0] * numbers[1]; break;
         case '/': result = numbers[0] / numbers[1]; break;
-        case '^': result = Math.pow(split[0],split[1]);
+        case '^': result = Math.pow(split[0],split[1]); break;
+        default: result = numbers[0];
     } 
     workString = result+'';
     numbers[0] = parseFloat(workString);
