@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="cz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <title>Kalkulačka</title>
+</head>
+<body>
+    <main><!--Cela kalkulacka-->   
+        <div class="grid">
+            <div id="display">
+                <!--Displej kalkulacky-->
+            </div>
+            <!--Tlacitka-->
+            <button onclick="clearAll()" id="clearall">C</button>
+            <button onclick="clearLast()" id="clear">⌫</button>
+            <button onclick="addNum(7)">7</button>
+            <button onclick="addNum(8)">8</button>
+            <button onclick="addNum(9)">9</button>
+            <button onclick="addNum(4)">4</button>
+            <button onclick="addNum(5)">5</button>
+            <button onclick="addNum(6)">6</button>
+            <button onclick="addNum(1)">1</button>
+            <button onclick="addNum(2)">2</button>
+            <button onclick="addNum(3)">3</button>
+            <button onclick="addNum(0)">0</button>
+            <button onclick="addNum('.')" id="decimal">,</button>    
+            <button onclick="equals()" id="equals">=</button>
+
+            <button onclick="addOperand('+')"class="fnButton" id="plus">+</button>
+            <button onclick="addOperand('-')"class="fnButton" id="minus">−</button>
+            <button onclick="addOperand('*')"class="fnButton" id="times">×</button>
+            <button onclick="addOperand('/')"class="fnButton" id="divide">÷</button>
+            <button onclick="addOperand('^')"class="fnButton" id="square">xʸ</button>
+            
+        </div>
+    </main>
+    <footer>
+        <p>Lukáš Guzanič &copy; 2022</p>
+        <button onclick="darkMode()" id="darkmode">🌞</button>
+    </footer>  
+</body>
+</html>

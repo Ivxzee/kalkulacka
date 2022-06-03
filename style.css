@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@600&display=swap');
+:root{
+    --main-bg-color: #1F1C22;
+    --calculator-bg-color: #D72638;
+    --button-bg-color: #69121A;
+    --hover-bg-color: #8C1823;
+    --footer-bg-color: #ffffff;
+}
+html{
+    background-color: var(--main-bg-color);
+}
+main {
+    width: 40vh;
+    margin: 0 auto;
+}
+.grid{
+    display: grid;
+    /*grid-template-columns: auto auto auto auto;*/
+    grid-template-columns: repeat(4, minmax(0, 25%));
+    background-color: var(--calculator-bg-color);
+    gap: 4%;
+    padding: 10% 5% 30% 5%;
+    margin-top: 15%;
+    box-shadow: 0px 12px 0px 0px #0A090B;
+    border-radius: 20px;
+}/*#0A090B*/
+.grid button{
+    padding: 0;
+    justify-self:stretch;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 2vh;
+    color: white;
+    /*padding: 1vh 0 1vh 0;*/
+    background-color: var(--button-bg-color);
+    height: 100%;
+    border: 0px solid;
+    border-radius: 20px;
+    box-shadow: 0px 12px 0px 0px #0a090bf6;
+}
+.grid button:not(#equals, #clear){aspect-ratio: 1;}
+.grid button:hover{
+    background-color: var(--hover-bg-color);
+}
+.grid button:active{
+    box-shadow: inset 0px 8px 0px 0px #0a090bde;
+}
+#display{
+    box-sizing: border-box;
+    justify-self: center;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    width: 100%;
+    background-color: white;
+    margin: 0 auto;
+    padding: 1vh;
+    text-align: right;
+    font-size: 6vh;
+    border-radius: 20px;
+    min-height: 11vh;
+    overflow: auto;
+}
+/*Individual button styles*/
+#equals{
+    grid-column-start: 3;
+    grid-column-end: 5;  
+}
+#decimal{
+    grid-row: 6;
+    grid-column: 2;
+}
+#clear {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+#clearall{
+    grid-column: 1;
+    grid-row: 2;
+}
+#square {
+    grid-row: 2;
+    grid-column: 3;
+}
+#divide {
+    grid-row: 2;
+    grid-column: 4;
+}
+#times {
+    grid-row: 3;
+    grid-column: 4;
+}
+#minus {
+    grid-row: 4;
+    grid-column: 4;
+}
+#plus {
+    grid-row: 5;
+    grid-column: 4;
+}
+footer{
+    color: var(--footer-bg-color);
+    text-align: center;
+}
+footer button{
+    width: 5vw;
+    font-size: 2vw;
+    padding: 0.5%;
+    background-color: var(--footer-bg-color);
+    
+}
