@@ -56,7 +56,6 @@ function addOperand(op){
 function equals(){
     //[+\-\*\/\^], Matches for all used operads
     let split = workString.split(/[+\-\*\/\^]/);
-    console.log(split);
         //This removes the first split string, if it happens to be empty
         //It can only be empty if the first char is '-'
         //Then i add the "-" back
@@ -64,7 +63,9 @@ function equals(){
         console.log(split[0])
     numbers[0] = parseFloat(split[0])
     numbers[1] = parseFloat(split[1])
-    var result = 0;
+    console.log(numbers)
+    let result = 0;
+    let roundTo = numbers[0].length + numbers[1].length;
     switch (currentOperand){
         case '+': result = numbers[0] + numbers[1]; break;
         case '-': result = numbers[0] - numbers[1]; break;
@@ -72,9 +73,10 @@ function equals(){
         case '/': result = numbers[0] / numbers[1]; break;
         case '^': result = Math.pow(split[0],split[1]); break;
         default: result = numbers[0];
-    } 
+    }
+    result = result.toFixed(roundTo);
+    numbers[0] = result;
     workString = result+'';
-    numbers[0] = parseFloat(workString);
     currentOperand = '';
 
     if (isNaN(workString)===true) {workString = "Chyba"}
