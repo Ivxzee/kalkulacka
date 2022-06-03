@@ -65,7 +65,8 @@ function equals(){
     numbers[1] = parseFloat(split[1])
     console.log(numbers)
     let result = 0;
-    let roundTo = numbers[0].length + numbers[1].length;
+    let roundTo = countDecimals(numbers[0]) + countDecimals(numbers[1]);
+    console.log(roundTo);
     switch (currentOperand){
         case '+': result = numbers[0] + numbers[1]; break;
         case '-': result = numbers[0] - numbers[1]; break;
@@ -107,3 +108,9 @@ function darkMode(){
         b.innerHTML = '🌞'
     }
 }
+//Helper function for rounding
+function countDecimals(num) { 
+    if ((num % 1) != 0) 
+        return num.toString().split(".")[1].length;  
+    return 0;
+};
