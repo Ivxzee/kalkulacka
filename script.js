@@ -41,6 +41,7 @@ function updateDisplay(){
     document.getElementById("display").innerHTML = workString;
 }
 function addOperand(op){
+    if (currentOperand!=''){equals()}
     isFinal = false;
     if (currentOperand == ''){
         if (workString == '' && op == '-'){
@@ -60,13 +61,10 @@ function equals(){
         //It can only be empty if the first char is '-'
         //Then i add the "-" back
         if (split[0]=='') {split.shift(); split[0] = "-"+split[0]}
-        console.log(split[0])
     numbers[0] = parseFloat(split[0])
     numbers[1] = parseFloat(split[1])
-    console.log(numbers)
     let result = 0;
     let roundTo = countDecimals(numbers[0]) + countDecimals(numbers[1]);
-    console.log(roundTo);
     switch (currentOperand){
         case '+': result = numbers[0] + numbers[1]; break;
         case '-': result = numbers[0] - numbers[1]; break;
