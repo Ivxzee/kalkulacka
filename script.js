@@ -64,7 +64,7 @@ function equals(){
     numbers[0] = parseFloat(split[0])
     numbers[1] = parseFloat(split[1])
     let result = 0;
-    let roundTo = countDecimals(numbers[0]) + countDecimals(numbers[1]);
+    let roundTo = split[0].length + split[1].length;
     switch (currentOperand){
         case '+': result = numbers[0] + numbers[1]; break;
         case '-': result = numbers[0] - numbers[1]; break;
@@ -73,14 +73,13 @@ function equals(){
         case '^': result = Math.pow(split[0],split[1]); break;
         default: result = numbers[0];
     }
-    result = result.toFixed(roundTo);
+    result = result.toPrecision(roundTo);
+    result = parseFloat(result.replace(/[0]+$/,''))//Cut trailing 0's
     numbers[0] = result;
     workString = result+'';
     currentOperand = '';
 
     if (isNaN(workString)===true) {workString = "Chyba"}
-    //Jokes
-        if (workString == "0.30000000000000004") workString = "Nezkousej"
     isFinal = true;
     updateDisplay();
 }
@@ -106,9 +105,3 @@ function darkMode(){
         b.innerHTML = '🌞'
     }
 }
-//Helper function for rounding
-function countDecimals(num) { 
-    if ((num % 1) != 0) 
-        return num.toString().split(".")[1].length;  
-    return 0;
-};
