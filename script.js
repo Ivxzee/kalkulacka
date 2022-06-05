@@ -1,6 +1,6 @@
 var numbers = [0,0];
 var currentOperand = '';
-var workString = '';    //String that temp. stores the typed in numbers. Used for base10 writing of numbers.
+var workString = '';
 var isFinal = false;
 var isDecimal = false;
 
@@ -14,9 +14,6 @@ function addNum(num){
     } else {
         workString += num;
     }
-    //Regex for one optional leading zero, that must be followed by a decimal point
-    //let regex = /^(?!0\d)\d+(?:\.\d*)?$/;
-    //This caused many issues all around, so i've decided to not include it
     updateDisplay();
 }
 function clearAll(){
@@ -57,14 +54,12 @@ function addOperand(op){
 function equals(){
     //[+\-\*\/\^], Matches for all used operads
     let split = workString.split(/[+\-\*\/\^]/);
-        //This removes the first split string, if it happens to be empty
-        //It can only be empty if the first char is '-'
-        //Then i add the "-" back
-        if (split[0]=='') {split.shift(); split[0] = "-"+split[0]}
+    if (split[0]=='') {split.shift(); split[0] = "-"+split[0]}
     numbers[0] = parseFloat(split[0])
     numbers[1] = parseFloat(split[1])
     let result = 0;
     let roundTo = split[0].length + split[1].length;
+
     switch (currentOperand){
         case '+': result = numbers[0] + numbers[1]; break;
         case '-': result = numbers[0] - numbers[1]; break;
@@ -73,6 +68,7 @@ function equals(){
         case '^': result = Math.pow(split[0],split[1]); break;
         default: result = numbers[0];
     }
+
     result = result.toPrecision(roundTo);
     result = parseFloat(result.replace(/[0]+$/,''))//Cut trailing 0's
     numbers[0] = result;
@@ -85,22 +81,27 @@ function equals(){
 }
 var isDark = true;
 function darkMode(){
+    var ico = document.querySelector("#favicon");
     var a = document.documentElement.style;
     var b = document.querySelector("#darkmode")
     if (isDark){
+        //Light mode
         a.setProperty("--main-bg-color", "#F7ECE1")
         a.setProperty("--calculator-bg-color", "#8D86C9")
         a.setProperty("--button-bg-color", "#242038")
         a.setProperty("--hover-bg-color", "#433C68")
         a.setProperty("--footer-bg-color","#000000")
+        ico.setAttribute("href","favicon_blue.png")
         isDark = false;
         b.innerHTML = '🌙'
     } else {
+        //Dark mode
         a.setProperty("--main-bg-color", "#1F1C22")
         a.setProperty("--calculator-bg-color", "#D72638")
         a.setProperty("--button-bg-color", "#69121A")
         a.setProperty("--hover-bg-color", "#8C1823")
         a.setProperty("--footer-bg-color","#ffffff")
+        ico.setAttribute("href","favicon_red.png")
         isDark = true;
         b.innerHTML = '🌞'
     }
