@@ -58,7 +58,7 @@ function equals(){
     numbers[0] = parseFloat(split[0])
     numbers[1] = parseFloat(split[1])
     let result = 0;
-    let roundTo = split[0].length + split[1].length;
+    let roundTo = split[0].length + split[1].length+1;
 
     switch (currentOperand){
         case '+': result = numbers[0] + numbers[1]; break;
