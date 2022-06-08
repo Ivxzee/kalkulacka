@@ -66,7 +66,7 @@ function equals(){
         case '*': result = numbers[0] * numbers[1]; break;
         case '/': result = numbers[0] / numbers[1]; break;
         case '^': result = Math.pow(split[0],split[1]);
-                  roundTo = split[0] * split[1]; break;
+                  roundTo = Math.min(split[0].length * split[1].length, 100); break;
         default: result = numbers[0];
     }
 
